@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Personal Finance Tracker</h1>
+            <div class="user-controls">
+                <button id="addExpenseBtn">Add Expense</button>
+                <button id="addIncomeBtn">Add Income</button>
+            </div>
+        </header>
+
+        <div class="date-selector">
+            <div class="date-nav">
+                <button id="prevDate"><i class="fas fa-chevron-left"></i></button>
+                <div class="current-date">
+                    <input type="date" id="dateSelector">
+                </div>
+                <button id="nextDate"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <button id="todayBtn">Today</button>
+        </div>
+
+        <div class="dashboard">
+            <div class="summary-card daily">
+                <h2>Daily Summary</h2>
+                <div class="card-content">
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="label">Income</span>
+                            <span class="value income-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Expense</span>
+                            <span class="value expense-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Balance</span>
+                            <span class="value balance-value">₹0</span>
+                        </div>
+                    </div>
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="summary-card weekly">
+                <h2>Weekly Summary</h2>
+                <div class="card-content">
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="label">Income</span>
+                            <span class="value income-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Expense</span>
+                            <span class="value expense-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Balance</span>
+                            <span class="value balance-value">₹0</span>
+                        </div>
+                    </div>
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="summary-card monthly">
+                <h2>Monthly Summary</h2>
+                <div class="card-content">
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="label">Income</span>
+                            <span class="value income-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Expense</span>
+                            <span class="value expense-value">₹0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Balance</span>
+                            <span class="value balance-value">₹0</span>
+                        </div>
+                    </div>
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="transactions-section">
+            <h2>Recent Transactions</h2>
+            <div class="filter-controls">
+                <select id="transactionFilter">
+                    <option value="all">All Transactions</option>
+                    <option value="income">Income Only</option>
+                    <option value="expense">Expenses Only</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <!-- Categories will be added dynamically -->
+                </select>
+            </div>
+            <div class="transactions-list" id="transactionsList">
+                <!-- Transactions will be added dynamically -->
+                <div class="empty-state">No transactions to display</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding transactions -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle">Add Transaction</h2>
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label for="transactionType">Type</label>
+                    <select id="transactionType">
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transactionAmount">Amount (₹)</label>
+                    <input type="number" id="transactionAmount" required min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="transactionCategory">Category</label>
+                    <select id="transactionCategory">
+                        <option value="food">Food & Dining</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="health">Health</option>
+                        <option value="education">Education</option>
+                        <option value="salary">Salary</option>
+                        <option value="investment">Investment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transactionDate">Date</label>
+                    <input type="date" id="transactionDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="transactionDescription">Description</label>
+                    <input type="text" id="transactionDescription" placeholder="Optional description">
+                </div>
+                <button type="submit">Save Transaction</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
